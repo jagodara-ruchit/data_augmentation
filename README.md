@@ -48,6 +48,18 @@ Now after commenting out all the necessary lines and making these folders you ha
 cp -r /home/username/train/* data/train
 cp -r /home/username/test/* data/test
 
+# One last step 
+
+After doing all of these there is one thing pending the files which we are using (text, utt2spk, spk2utt and wav.scp) all should be in sorted form but here it can not be generated in sorted form so we need to do changes after making it using above steps but don't worry for that we have to do nothing we can directly use Kaldi's fix_data_dir.sh script that will do all the necessary work for us but before running this script ensure that you have copied all your audio files to audio_data directory and also followed every steps which I mentioned here.
+
+So just run below commands in your model_compile/hi_test directory
+utils/fix_data_dir.sh /home/username/train
+utils/fix_data_dir.sh /home/username/test
+
+(Here, if you have saved your train and test directories which will be copied to a different location then replace /home/username/train with your own train directory path.)
+
+Now, all your files are fixed and are ready to use.
+
 # Additional Tips
 Aftеr running makе_filеs.py,  plеasе rеviеw thе script's commеnts for potеntial manual data mеrging stеps,  if nеcеssary. 
 Ensurе that you havе thе nеcеssary dеpеndеnciеs installеd,  including pydub for audio procеssing. 
