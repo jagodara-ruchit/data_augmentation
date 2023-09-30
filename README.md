@@ -38,7 +38,7 @@ Exеcutе thе script,  and it will automatically gеnеratе thе rеquirеd da
 After executing the script, add the data that you recieved to the original text,wav.scp,utt2spk and spk2utt files otherwise your audio data will not be used in the process. You have to do this for these files which are present in data/train and data/test folders.
 
 # Note 
-But while doing this thing, note that whenever you run run.sh script, clean.sh script will clean all the files present in data/train and data/test folders and then train_dict.sh script will download these files from the server where we have not added the new files so it will download old files. 
+But after doing this thing, note that whenever you run run.sh script, clean.sh script will clean all the files present in data/train and data/test folders and then train_dict.sh script will download these files from the server where we have not added the new files so it will download old files. 
 
 # How to avoid this ?
 To avoid this issue you can comment out all the lines which contain s3cmd command for downloading text,wav.scp,utt2spk and spk2utt files (Remember you will find that each files are being downloaded two times you have to comment out both becuase one is for data/train and one is for data/test).
