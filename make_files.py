@@ -1,7 +1,7 @@
 import os
 import shutil 
-generated_audiofile_path = 'try'    
-input_path = 'text'                          # Give your input path to wav.scp file
+generated_audiofile_path = 'try'    		# Give the path to your audio files generated
+input_path = 'text'                             # Give your input path to text file
 wav_output_file_path = 'wav_final.scp'          # Give your final output path here for wav.scp file
 text_output_file_path = 'text_final'            # Give your final output path here for text file
 spk2utt_output_file_path = 'spk2utt_final'      # Give your final output path here for spk2utt file
@@ -20,7 +20,7 @@ with open(input_path,'r') as f:
 f.close()
 file = open(output_path,'w')
 for i in range(len(data)):
-    file.write(data[i][:8]+'7'+data[i][9:]+'\n')
+    file.write(data[i][:8]+'7'+data[i][9:]+'\n')  #Use any other id instead of 7 if you want to change the id of audio files
 file.close()
 ref_file_path = output_path
 
@@ -36,16 +36,16 @@ wav_output_file = open(wav_output_file_path,'w')
 text_output_file = open(text_output_file_path,'w')
 utt2spk_output_file = open(utt2spk_output_file_path,'w')
 spk2utt_output_file = open(spk2utt_output_file_path,'w')
-
+y=8  #This is the id of audio files which you have given in text_new file. If you have changed the id then change this also.
 for audio_file in audiofile_names:
     for iterator in range(len(data)):
         audio_name = 'indian_s01_'+data[iterator][8:32]+'.wav'
         if audio_name == audio_file:
             id = audio_name[11:35]
-            wav_output_file.write(f'3S00011-{id} sox db/audio_data/speaker_01/indian_s01_{id}.wav -r 8000 -c 1 -t wav -|\n')
+            wav_output_file.write(f'{y}S00011-{id} sox db/audio_data/speaker_01/indian_s01_{id}.wav -r 8000 -c 1 -t wav -|\n')
             text_output_file.write(data[iterator][:8]+id+data[iterator][32:]+'\n')
-            spk2utt_output_file.write(f'3S00011-{id} 3S00011-{id}'+'\n')
-            utt2spk_output_file.write(f'3S00011-{id} 3S00011-{id}'+'\n')
+            spk2utt_output_file.write(f'{y}S00011-{id} {y}S00011-{id}'+'\n')
+            utt2spk_output_file.write(f'{y}S00011-{id} {y}S00011-{id}'+'\n')
 wav_output_file.close()
 text_output_file.close()
 utt2spk_output_file.close()
